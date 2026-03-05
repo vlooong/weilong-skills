@@ -1,0 +1,27 @@
+{
+  "skill_name": "thesis-advisor-review",
+  "display_name": "Thesis Advisor Review",
+  "execution_mode": "autonomous",
+  "default_degree": "master",
+  "default_input": "markdown-single",
+  "default_granularity": "section",
+  "default_style": "advisor-annotation",
+  "allowed_tools": ["Read", "Write", "AskUserQuestion", "Task", "Glob", "Grep", "Bash"],
+  "specs": [
+    { "path": "specs/thesis-review-requirements.md", "purpose": "Domain requirements", "phases": ["phase-0", "phase-2"], "context": "Define what counts as pass and what must be checked" },
+    { "path": "specs/quality-standards.md", "purpose": "Quality gates", "phases": ["phase-0", "phase-3"], "context": "Decide PASS/REVISE/BLOCK" },
+    { "path": "specs/output-style.md", "purpose": "Output style", "phases": ["phase-2"], "context": "Keep advisor annotation format consistent" },
+    { "path": "specs/state-schema.md", "purpose": "State schema", "phases": ["phase-1", "phase-2", "phase-3"], "context": "Ensure state transitions are correct" }
+  ],
+  "templates": [
+    { "path": "templates/section-review-template.md", "purpose": "Section review shell" },
+    { "path": "templates/gate-decision-template.md", "purpose": "Gate decision shell" }
+  ],
+  "actions": [
+    { "id": "action-init", "name": "Init", "path": "phases/actions/action-init.md" },
+    { "id": "action-load-markdown", "name": "Load Markdown", "path": "phases/actions/action-load-markdown.md" },
+    { "id": "action-select-next-section", "name": "Select Next Section", "path": "phases/actions/action-select-next-section.md" },
+    { "id": "action-review-section", "name": "Review Section", "path": "phases/actions/action-review-section.md" },
+    { "id": "action-gate-and-advance", "name": "Gate & Advance", "path": "phases/actions/action-gate-and-advance.md" }
+  ]
+}
